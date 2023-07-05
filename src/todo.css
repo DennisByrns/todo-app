@@ -1,0 +1,66 @@
+body {
+	background-color: #111827;
+}
+h5 {
+	float: left;
+}
+input[type="text"] {
+	background-color: #384151;
+	color:#79818f;
+	border: 2px solid #79818f;
+	border-radius: 5px;
+	padding-left: 2%;
+	margin-left: 2%;
+	width: 80%;
+
+}
+input[type="text"]:focus {
+	outline: none;
+}
+.addBtn {
+	background-color: #3b81f6;
+	color: white;
+	font-size: 1em;
+}
+.topDiv {
+	padding-top: 10%;
+	width: 20rem;
+	margin: auto;
+}
+.todoDiv {
+	background-color: #1f2937;
+	color: white;
+}
+.todoTitle {
+	padding-top: 2%;
+}
+.todoItemList {
+	padding: 0 10% 10% 10%;
+}
+.todoItem {
+	display: inline-flex;
+	flex-direction: column-reverse;
+	background-color: #384151;
+	color: white;
+	float:right;
+	padding-top: 2%;
+	margin-bottom: 2%;
+	width: 75%;
+}
+.todoItemCompleted {
+	text-decoration: line-through;
+}
+.todoItemNotCompleted {
+	text-decoration: none;
+}
+.todoBtnGroup {
+	float: right;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+p {
+	display: flex;
+	justify-content: flex-start;
+	padding-left: 5%;
+	flex-wrap: wrap;
+}
