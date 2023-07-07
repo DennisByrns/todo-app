@@ -22,6 +22,7 @@ export default function ToDo() {
 			]);
 
 			inputVal.current.value = "";
+			inputVal.current.focus();
 
 		}
 	}
@@ -57,10 +58,11 @@ export default function ToDo() {
 							<h5 className="card-title todoTitle">Fuck Todo</h5>
 							<div className="input-group mb-3" style={{padding: "5% 5% 0 5%", flexWrap: "nowrap"}}>
 								<input type="text"
-										ref={inputVal} 
+										autoFocus
+										ref={inputVal}
 										placeholder="Add a Task" />
 								<button className="btn btn-outline-secondary addBtn" 
-	  									type="button" 
+	  									type="submit" 
 	  									id="button-addon2"
 	  									onClick={handleClick}>Add</button>
   							</div>
