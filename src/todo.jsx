@@ -27,6 +27,12 @@ export default function ToDo() {
 		}
 	}
 
+	const handleEnterDown = (event) => {
+		if (event.key === 'Enter') {
+			handleClick();
+		}
+	}
+
 	function handleCompletedClick(id) {
 		setUpdated(prevUpdated =>
 			prevUpdated.map(todo => {
@@ -49,7 +55,7 @@ export default function ToDo() {
 
 	return (
 		<>
-			<div className="container-fluid">
+			<div className="container-fluid" onKeyDown={handleEnterDown}>
 				<div className="row topDiv"></div>
 				<div className="row">
 					<div className="col"></div>
