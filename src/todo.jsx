@@ -65,7 +65,16 @@ export default function ToDo() {
 	  									onClick={handleClick}>Add</button>
   							</div>
   							<div className="todoItemList">
-  								{updated.map((item) => (<TodoItem text={item.text} styleState={item.style} onCompletedClick={handleCompletedClick} onDeleteClick={handleDeleteClick} id={item.id} key={item.id}/>))}
+  								{updated.map((item) => (
+									<TodoItem 
+										text={item.text} 
+										styleState={item.style} 
+										onCompletedClick={handleCompletedClick} 
+										onDeleteClick={handleDeleteClick} 
+										id={item.id} 
+										key={item.id}
+									/>
+								))}
   							</div>
 						</div>
 					</div>
