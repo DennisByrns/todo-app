@@ -10,34 +10,31 @@ export default function ToDo() {
 	const [styleState, setStyleState] = useState([]);
 
 	function handleClick() {
-		if (inputVal.current.value === "") {
-
-		} else {
+		if (inputVal.current.value !== "") {
 		
-		setUpdated([
-			...updated, 
-			{
-				id: updated.length,
-				text: inputVal.current.value,
-				style: false
-			}
-		]);
+			setUpdated([
+				...updated, 
+				{
+					id: Date.now(),
+					text: inputVal.current.value,
+					style: false
+				}
+			]);
 
-		inputVal.current.value = "";
+			inputVal.current.value = "";
 
 		}
 	}
 
-	function handleEditClick(id) {
-		if(updated[id].id === id && updated[id].style === false) {
-			let newUpdated = updated;
-			newUpdated[id].style = true;
-			setUpdated([...newUpdated]);
-		} else {
-			let newUpdated = updated;
-			newUpdated[id].style = false;
-			setUpdated([...newUpdated]);
-		}
+	function handleCompletedClick(id) {
+		setUpdated(prevUpdated =>
+			prevUpdated.map(todo => {
+				if (todo.id === id) {
+					return { ...todo, style: !todo.style};
+				}
+				return todo;
+			})
+		);
 	}
 
 
@@ -68,7 +65,7 @@ export default function ToDo() {
 	  									onClick={handleClick}>Add</button>
   							</div>
   							<div className="todoItemList">
-  								{updated.map((item) => (<TodoItem text={item.text} styleState={item.style} onEditClick={handleEditClick} onDeleteClick={handleDeleteClick} id={item.id} key={item.id}/>))}
+  								{updated.map((item) => (<TodoItem text={item.text} styleState={item.style} onCompletedClick={handleCompletedClick} onDeleteClick={handleDeleteClick} id={item.id} key={item.id}/>))}
   							</div>
 						</div>
 					</div>

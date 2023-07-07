@@ -9,7 +9,7 @@ export default function TodoItem(props) {
 		<div className="card todoItem">
 			<p className={props.styleState ? "todoItemCompleted" : "todoItemNotCompleted"}>{props.text}</p>
 			<div className="btn-group mr-2 todoBtnGroup" role="group">
-				<svg onClick={() => props.onEditClick(props.id)} xmlns="http://www.w3.org/2000/svg" width="5%" height="2%" fill="lightgreen" className="bi bi-check2 " viewBox="0 0 16 16">
+				<svg onClick={() => props.onCompletedClick(props.id)} xmlns="http://www.w3.org/2000/svg" width="5%" height="2%" fill="lightgreen" className="bi bi-check2 " viewBox="0 0 16 16">
 					<path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
 				</svg>
 				<svg onClick={() => props.onDeleteClick(props.id)} xmlns="http://www.w3.org/2000/svg" width="5%" height="2%" fill="red" className="bi bi-trash3" viewBox="0 0 16 16">
@@ -19,5 +19,3 @@ export default function TodoItem(props) {
 		</div>
 		);
 }
-
-//Change style attribute, but only on clicked img
