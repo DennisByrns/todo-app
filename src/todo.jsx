@@ -7,7 +7,6 @@ export default function ToDo() {
 
 	const inputVal = useRef(null);
 	const [updated, setUpdated] = useState([]);
-	const [styleState, setStyleState] = useState([]);
 
 	function handleClick() {
 		if (inputVal.current.value !== "") {
