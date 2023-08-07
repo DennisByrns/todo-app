@@ -6,7 +6,12 @@ import './todo.css';
 export default function ToDo() {
 
 	const inputVal = useRef(null);
+	const dragItem = useRef();
+	const overItemIndex = useRef();
+	const dragItemIndex = useRef();
+	const dragNode = useRef();
 	const [updated, setUpdated] = useState([]);
+	const [dragging, setDragging] = useState(false);
 
 	function handleClick() {
 		if (inputVal.current.value !== "") {
@@ -52,6 +57,45 @@ export default function ToDo() {
 		setUpdated([...removeTodoItem]);
 	}
 
+	const handleDragStart = (e, itemId, itemIndex) => {
+		dragItem.current = itemId;
+		dragItemIndex.current = itemIndex;
+		dragNode.current = e.target;
+		setTimeout(() => {
+			setDragging(true);
+		}, 0)
+	}
+
+	const getStyles = (params) => {
+		if (params === dragItem.current) {
+			return "card draggingTodoItem"
+		}
+		return "card todoItem"
+		
+	}
+
+	const handleDragEnter = (e, itemId, itemIndex) => {
+		e.preventDefault();
+		overItemIndex.current = itemIndex;
+
+		if (dragItemIndex.current !== overItemIndex.current) {
+			let newUpdated = [...updated];
+			newUpdated.splice(overItemIndex.current,0, newUpdated.splice(dragItemIndex.current,1,)[0]);
+			setUpdated(newUpdated);
+			dragItemIndex.current = overItemIndex.current;
+		}
+	}
+	const handleDragOver = (e) => {
+		e.preventDefault();
+	}
+
+	const handleDragEnd = () => {
+		dragItem.current = null;
+		dragNode.current = null;
+		dragItemIndex.current = null;
+		setDragging(false);
+	}
+
 	return (
 		<>
 			<div className="container-fluid" onKeyDown={handleEnterDown}>
@@ -72,13 +116,22 @@ export default function ToDo() {
 	  									onClick={handleClick}>Add</button>
   							</div>
   							<div className="todoItemList">
-  								{updated.map((item) => (
-									<TodoItem 
+  								{updated.map((item, itemIndex) => (
+									<TodoItem
+										draggable="true"
 										text={item.text} 
 										styleState={item.style} 
+										isDragging={dragging}
+										draggingStyle={getStyles}
 										onCompletedClick={handleCompletedClick} 
-										onDeleteClick={handleDeleteClick} 
-										id={item.id} 
+										onDeleteClick={handleDeleteClick}
+										onDrag={handleDragStart}
+										onDragStart={handleDragStart}
+										onDragEnter={handleDragEnter}
+										onDragOver={handleDragOver}
+										onDragEnd={handleDragEnd}
+										id={item.id}
+										itemIndex={itemIndex} 
 										key={item.id}
 									/>
 								))}

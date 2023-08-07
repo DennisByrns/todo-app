@@ -46,9 +46,22 @@ input[type="text"]:focus {
 	padding-top: 2%;
 	margin-bottom: 2%;
 	width: 75%;
+	cursor: grab;
+}
+.draggingTodoItem {
+	display: inline-flex;
+	flex-direction: column-reverse;
+	background-color: #000000;
+	color: rgb(0, 0, 0);
+	float:right;
+	padding-top: 2%;
+	margin-bottom: 2%;
+	width: 75%;
+	cursor: grabbing;
 }
 .todoItemCompleted {
 	text-decoration: line-through;
+	opacity: 25%;
 }
 .todoItemNotCompleted {
 	text-decoration: none;
@@ -57,6 +70,7 @@ input[type="text"]:focus {
 	float: right;
 	flex-direction: row;
 	justify-content: flex-end;
+	cursor: default;
 }
 p {
 	display: flex;

@@ -4,9 +4,13 @@ import './todo.css'
 
 export default function TodoItem(props) {
 
-
 	return (
-		<div className="card todoItem">
+		<div draggable="true" 
+		className={props.isDragging? props.draggingStyle(props.id, props.itemIndex):"card todoItem"} 
+		onDragStart={(e) => props.onDragStart(e, props.id, props.itemIndex)}
+		onDragOver={(e) => props.onDragOver(e)} 
+		onDragEnd={(e) => props.onDragEnd(e)}
+		onDragEnter={props.isDragging?(e) => props.onDragEnter(e, props.id,props.itemIndex):null}>
 			<p className={props.styleState ? "todoItemCompleted" : "todoItemNotCompleted"}>{props.text}</p>
 			<div className="btn-group mr-2 todoBtnGroup" role="group">
 				<svg onClick={() => props.onCompletedClick(props.id)} xmlns="http://www.w3.org/2000/svg" width="5%" height="2%" fill="lightgreen" className="bi bi-check2 " viewBox="0 0 16 16">
