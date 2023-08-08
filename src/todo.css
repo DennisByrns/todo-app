@@ -70,7 +70,7 @@ input[type="text"]:focus {
 	float: right;
 	flex-direction: row;
 	justify-content: flex-end;
-	cursor: default;
+	cursor: grab;
 }
 p {
 	display: flex;
