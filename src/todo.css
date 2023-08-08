@@ -46,7 +46,6 @@ input[type="text"]:focus {
 	padding-top: 2%;
 	margin-bottom: 2%;
 	width: 75%;
-	cursor: grab;
 }
 .draggingTodoItem {
 	display: inline-flex;
@@ -57,24 +56,30 @@ input[type="text"]:focus {
 	padding-top: 2%;
 	margin-bottom: 2%;
 	width: 75%;
-	cursor: grabbing;
 }
 .todoItemCompleted {
+	display: flex;
+	justify-content: flex-start;
+	padding-left: 5%;
+	flex-wrap: wrap;
 	text-decoration: line-through;
 	opacity: 25%;
 }
 .todoItemNotCompleted {
+	display: flex;
+	justify-content: flex-start;
+	padding-left: 5%;
+	flex-wrap: wrap;
 	text-decoration: none;
 }
 .todoBtnGroup {
 	float: right;
 	flex-direction: row;
 	justify-content: flex-end;
-	cursor: grab;
 }
-p {
-	display: flex;
-	justify-content: flex-start;
-	padding-left: 5%;
-	flex-wrap: wrap;
+.dragSpot {
+	margin: 0;
+	display: inline-flex;
+	position: absolute;
+	cursor: grab
 }

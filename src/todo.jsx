@@ -61,6 +61,9 @@ export default function ToDo() {
 		dragItem.current = itemId;
 		dragItemIndex.current = itemIndex;
 		dragNode.current = e.target;
+
+		const crt = dragNode.current;
+		e.dataTransfer.setDragImage(crt.parentNode, 10, 50);
 		setTimeout(() => {
 			setDragging(true);
 		}, 0)
