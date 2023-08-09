@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRef, useState} from 'react';
+import { useCookies } from "react-cookie";
 import TodoItem from './todoItem';
 import './todo.css';
 
 export default function ToDo() {
+	
 
 	const inputVal = useRef(null);
 	const dragItem = useRef();
@@ -12,23 +14,44 @@ export default function ToDo() {
 	const dragNode = useRef();
 	const [updated, setUpdated] = useState([]);
 	const [dragging, setDragging] = useState(false);
+	const [cookies, setCookie] = useCookies(["data"]);
+
+
+	useEffect(() => {
+		if (cookies.data !== "" && cookies.data !== undefined ) {
+			setUpdated(cookies.data);
+		}
+		// eslint-disable-next-line
+	}, []);
 
 	function handleClick() {
 		if (inputVal.current.value !== "") {
-		
-			setUpdated([
-				...updated, 
+			const newUpdatedValue = [...updated,
 				{
 					id: Date.now(),
 					text: inputVal.current.value,
 					style: false
-				}
-			]);
-
+				}]
+			setCookie("data", "", {
+				path: "/"
+			});
+			setCookie("data", newUpdatedValue, {
+				path: "/"
+			});	
+			setUpdated([...newUpdatedValue]);
+			
+		
+			// setUpdated([
+			// 	...updated, 
+			// 	{
+			// 		id: Date.now(),
+			// 		text: inputVal.current.value,
+			// 		style: false
+			// 	}
+			// ]);
 			inputVal.current.value = "";
 			inputVal.current.focus();
-
-		}
+		}	
 	}
 
 	const handleEnterDown = (event) => {
@@ -38,22 +61,26 @@ export default function ToDo() {
 	}
 
 	function handleCompletedClick(id) {
-		setUpdated(prevUpdated =>
-			prevUpdated.map(todo => {
+		const newUpdatedStyle = updated.map((todo) => {
 				if (todo.id === id) {
 					return { ...todo, style: !todo.style};
 				}
 				return todo;
 			})
-		);
+		setCookie("data", newUpdatedStyle , {
+			path: "/"
+		});
+		setUpdated(newUpdatedStyle);
 	}
-
 
 	function handleDeleteClick(id) {
 		const removeTodoItem = updated.filter((todo) => {
+			document.cookie = "data=";
 			return todo.id !== id;
 		});
-
+		setCookie("data", [...removeTodoItem], {
+			path: "/"
+		});
 		setUpdated([...removeTodoItem]);
 	}
 
@@ -84,10 +111,14 @@ export default function ToDo() {
 		if (dragItemIndex.current !== overItemIndex.current) {
 			let newUpdated = [...updated];
 			newUpdated.splice(overItemIndex.current,0, newUpdated.splice(dragItemIndex.current,1,)[0]);
+			setCookie("data", newUpdated, {
+				path: "/"
+			});
 			setUpdated(newUpdated);
 			dragItemIndex.current = overItemIndex.current;
 		}
 	}
+
 	const handleDragOver = (e) => {
 		e.preventDefault();
 	}
