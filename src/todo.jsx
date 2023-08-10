@@ -129,7 +129,7 @@ export default function ToDo() {
 					<div className="col"></div>
 					<div className="col text-center">
 						<div className="card todoDiv">
-							<h5 className="card-title todoTitle">Fuck Todo</h5>
+							<h5 className="card-title todoTitle">Todo</h5>
 							<div className="input-group mb-3" style={{padding: "5% 5% 0 5%", flexWrap: "nowrap"}}>
 								<input type="text"
 										autoFocus
