@@ -39,16 +39,7 @@ export default function ToDo() {
 				path: "/"
 			});	
 			setUpdated([...newUpdatedValue]);
-			
-		
-			// setUpdated([
-			// 	...updated, 
-			// 	{
-			// 		id: Date.now(),
-			// 		text: inputVal.current.value,
-			// 		style: false
-			// 	}
-			// ]);
+
 			inputVal.current.value = "";
 			inputVal.current.focus();
 		}	
