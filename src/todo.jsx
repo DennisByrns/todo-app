@@ -126,8 +126,8 @@ export default function ToDo() {
 			<div className="container-fluid" onKeyDown={handleEnterDown}>
 				<div className="row topDiv"></div>
 				<div className="row">
-					<div className="col"></div>
-					<div className="col text-center">
+					<div className="col col-0 col-sm-0 col-lg-4"></div>
+					<div className="col col-12 col-sm-12 col-lg-4 text-center">
 						<div className="card todoDiv">
 							<h5 className="card-title todoTitle">Todo</h5>
 							<div className="input-group mb-3" style={{padding: "5% 5% 0 5%", flexWrap: "nowrap"}}>
@@ -163,7 +163,7 @@ export default function ToDo() {
   							</div>
 						</div>
 					</div>
-					<div className="col"></div>
+					<div className="col col-0 col-sm-0 col-lg-4"></div>
 				</div>
 			</div>
 		</>
